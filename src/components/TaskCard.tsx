@@ -34,16 +34,16 @@ export default function TaskCard(props) {
       <div className="flex flex-col w-full">
         <div className="flex flax-row items-center gap-6 mt-5">
           <div
-            className="flex flex-row justify-between items-center gap-2 text-[12px] bg-white rounded-full px-2"
+            className="flex flex-row justify-between items-center text-gray-800 gap-2 text-[12px] bg-white rounded-full px-2"
             style={{ border: "1px solid #dde6f3e3" }}
           >
-            <TbCalendarTime /> {props.start}
+            <TbCalendarTime color="gray" /> {props.start}
           </div>
           <div
-            className="flex flex-row justify-between items-center gap-2 text-[12px] bg-white rounded-full px-2"
+            className="flex flex-row justify-between items-center text-gray-800 gap-2 text-[12px] bg-white rounded-full px-2"
             style={{ border: "1px solid #dde6f3e3" }}
           >
-            <RiCalendarCheckLine /> {props.end}
+            <RiCalendarCheckLine color="gray" /> {props.end}
           </div>
         </div>
 
@@ -66,7 +66,7 @@ export default function TaskCard(props) {
           </div>
 
           <div className="ml-[5px] flex flex-col items-start">
-            <span className="text-[11px]">
+            <span className="text-[11px] text-gray-900">
               {props.status === "initialized"
                 ? translations.inProgress
                 : props.status === "done"
@@ -86,7 +86,9 @@ export default function TaskCard(props) {
                   }}
                 ></div>
               </div>{" "}
-              <span className="text-[12px]">{props.percentage}%</span>
+              <span className="text-[12px] text-gray-900">
+                {props.percentage}%
+              </span>
             </div>
           </div>
         </div>
