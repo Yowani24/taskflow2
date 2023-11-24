@@ -119,6 +119,7 @@ export function TaskDetails({ taskData, taskName, status }) {
             <div className="flex flex-wrap my-2 mb-5 items-center gap-4">
               <div className="w-full md:w-80">
                 <Input
+                  autoFocus={false}
                   label={translations.addSubAtivityPlaceholderText}
                   className="w-full"
                 />
