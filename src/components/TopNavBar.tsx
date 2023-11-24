@@ -69,10 +69,10 @@ export default function TopNavBar() {
         </MenuHandler>
 
         <MenuList>
-          <MenuItem onClick={() => switchLanguage("pt")}>
+          <MenuItem onClick={() => switchLanguage("pt")} className="bg-white">
             {translations.language_pt}
           </MenuItem>
-          <MenuItem onClick={() => switchLanguage("en")}>
+          <MenuItem onClick={() => switchLanguage("en")} className="bg-white">
             {translations.language_en}
           </MenuItem>
         </MenuList>
@@ -125,7 +125,7 @@ export default function TopNavBar() {
                   My Profile
                 </Typography>
               </MenuItem>
-              <MenuItem className="flex items-center gap-2">
+              <MenuItem className="flex items-center gap-2 bg-white">
                 <svg
                   width="16"
                   height="16"
@@ -145,7 +145,7 @@ export default function TopNavBar() {
                   Edit Profile
                 </Typography>
               </MenuItem>
-              <MenuItem className="flex items-center gap-2">
+              <MenuItem className="flex items-center gap-2 bg-white">
                 <svg
                   width="14"
                   height="14"
@@ -165,7 +165,7 @@ export default function TopNavBar() {
                   Inbox
                 </Typography>
               </MenuItem>
-              <MenuItem className="flex items-center gap-2">
+              <MenuItem className="flex items-center gap-2 bg-white">
                 <svg
                   width="16"
                   height="16"
@@ -185,7 +185,7 @@ export default function TopNavBar() {
                 </Typography>
               </MenuItem>
               <hr className="my-2 border-blue-gray-50" />
-              <MenuItem className="flex items-center gap-2 ">
+              <MenuItem className="flex items-center gap-2 bg-white">
                 <svg
                   width="16"
                   height="14"
