@@ -20,6 +20,7 @@
   "createActivity": "Adicionar atividade",
   "deleteProject": "Excluir Projeto",
   "creatingActivity": "Criando atividade",
+  "creatingProject": "Criando projeto",
   "provideTheActivityDescription": "Faça a descrição da atividade",
   "description": "Descrição",
   "startDate": "Data início",
@@ -27,5 +28,7 @@
   "cleanFilter": "Limpar filtro",
   "clean": "Limpar",
   "deleteActivity": "Excluir atividade",
-  "deleteAllSubactivities": "Excluir todas as atividades"
+  "deleteAllSubactivities": "Excluir todas as atividades",
+  "projectTitle": "Nome do projeto",
+  "user": "Usuário"
 }

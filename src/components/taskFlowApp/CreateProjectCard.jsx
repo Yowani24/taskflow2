@@ -30,7 +30,7 @@ export function CreateProjectCard() {
             className="mb-1 text-[16px] md:text-[20px] text-gray-900"
             variant="h4"
           >
-            Criando projeto
+            {translations.creatingProject}
           </Typography>
           <IconButton variant="text" color="blue-gray" onClick={closeDrawer}>
             <svg
@@ -49,11 +49,11 @@ export function CreateProjectCard() {
             </svg>
           </IconButton>
         </div>
-        <div className="mb-5 px-4">
+        {/* <div className="mb-5 px-4">
           <Typography variant="small" color="gray" className="font-normal ">
             Insira os detalhes do projeto
           </Typography>
-        </div>
+        </div> */}
         <form className="flex flex-col gap-6 p-4">
           <div className="grid gap-6">
             <Typography
@@ -61,7 +61,7 @@ export function CreateProjectCard() {
               color="blue-gray"
               variant="h6"
             >
-              Usuário
+              {translations.user}
             </Typography>
             <Input label="Username" disabled value={"João da Costa"} />
           </div>
@@ -72,9 +72,9 @@ export function CreateProjectCard() {
               color="blue-gray"
               variant="h6"
             >
-              Nome do projeto
+              {translations.projectTitle}
             </Typography>
-            <Input label="Nome do projeto" />
+            <Input label={translations.projectTitle} />
             {/* <Textarea label="Message" /> */}
           </div>
           <Button>{translations.createProject}</Button>
