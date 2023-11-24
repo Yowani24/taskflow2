@@ -189,14 +189,14 @@ export function TaskDetails({ taskData, taskName, status }) {
               variant="text"
               color="red"
             >
-              Deletar atividade
+              {translations.deleteActivity}
             </Button>
             <Button
               className="px-2 py-2 hidden md:flex capitalize border-none outline-none"
               variant="text"
               color="orange"
             >
-              Deletar todas sub atividades
+              {translations.deleteAllSubactivities}
             </Button>
           </div>
           <Button

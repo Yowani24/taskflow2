@@ -25,5 +25,7 @@
   "startDate": "Data início",
   "endDate": "Data fim",
   "cleanFilter": "Limpar filtro",
-  "clean": "Limpar"
+  "clean": "Limpar",
+  "deleteActivity": "Excluir atividade",
+  "deleteAllSubactivities": "Excluir todas as atividades"
 }
