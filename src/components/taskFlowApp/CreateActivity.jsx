@@ -76,8 +76,10 @@ export function CreateActivity({ projectName, projectId }) {
                 </Typography>
                 <Input
                   type="date"
-                  containerProps={{ className: "min-w-[72px]" }}
-                  className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
+                  containerProps={{
+                    className: "md:min-w-[72px]",
+                  }}
+                  className=" !border-t-blue-gray-200 focus:!border-t-gray-900 text-gray-700"
                   labelProps={{
                     className: "before:content-none after:content-none",
                   }}
@@ -89,8 +91,8 @@ export function CreateActivity({ projectName, projectId }) {
                 </Typography>
                 <Input
                   type="date"
-                  containerProps={{ className: "min-w-[72px]" }}
-                  className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
+                  containerProps={{ className: "md:min-w-[72px]" }}
+                  className=" !border-t-blue-gray-200 focus:!border-t-gray-900 text-gray-700"
                   labelProps={{
                     className: "before:content-none after:content-none",
                   }}
