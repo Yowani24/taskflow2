@@ -71,7 +71,7 @@ export default function TaskFlowApp() {
 
           <MenuList>
             {tasks.map((item) => (
-              <MenuItem className="p-0" key={item.id}>
+              <MenuItem className="p-0 bg-white" key={item.id}>
                 <label
                   htmlFor={item.id}
                   className="flex cursor-pointer items-center gap-2 p-2"

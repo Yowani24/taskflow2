@@ -22,10 +22,13 @@ export function CreateActivity({ projectName, projectId }) {
     <>
       <div
         onClick={handleOpen}
-        className="flex gap-2 text-sm border-none outline-none hover:border-none active:border-none cursor-pointer bg-blue-gray-50 hover:bg-blue-gray-100 transition p-1 px-2 rounded-full"
+        className="flex gap-2 text-sm border-none outline-none hover:border-none active:border-none cursor-pointer bg-blue-gray-100 hover:bg-blue-gray-200 transition p-1 px-2 rounded-full"
       >
         <MdAddCircle size={20} className="" />
-        {translations.createActivity}
+        <div>
+          <span className="hidden md:flex">{translations.createActivity}</span>{" "}
+          <span className="md:hidden">{translations.addText}</span>{" "}
+        </div>
       </div>
       <Dialog open={open} size="xs">
         <div className="flex items-center justify-between">
