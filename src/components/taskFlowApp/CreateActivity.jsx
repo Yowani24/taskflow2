@@ -22,7 +22,7 @@ export function CreateActivity({ projectName, projectId }) {
     <>
       <div
         onClick={handleOpen}
-        className="flex gap-2 text-sm border-none outline-none hover:border-none active:border-none cursor-pointer bg-blue-gray-100 hover:bg-blue-gray-200 transition p-1 px-2 rounded-full"
+        className="flex gap-2 text-sm border-none outline-none hover:border-none active:border-none cursor-pointer bg-blue-gray-100 hover:bg-blue-gray-200 transition p-1 px-2 rounded-full text-gray-900"
       >
         <MdAddCircle size={20} className="" />
         <div>
