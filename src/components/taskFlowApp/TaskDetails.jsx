@@ -76,7 +76,7 @@ export function TaskDetails({ taskData, taskName, status }) {
             />
           </svg>
         </div>
-        <DialogBody className="max-h-[510px] min-h-[480px]">
+        <DialogBody className="max-h-[525px] min-h-[480px]">
           <Typography
             className="mb-8 -mt-7 text-[14px] md:text-[18px]"
             color="gray"
