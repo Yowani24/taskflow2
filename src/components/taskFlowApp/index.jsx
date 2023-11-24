@@ -80,6 +80,7 @@ export default function TaskFlowApp() {
                     type="checkbox"
                     id={item.id}
                     color="#ffffff"
+                    className="bg-white"
                     checked={selectedProject === item.name}
                     onChange={() => handleCheckboxChange(item)}
                   />

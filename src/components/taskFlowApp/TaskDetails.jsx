@@ -76,7 +76,7 @@ export function TaskDetails({ taskData, taskName, status }) {
             />
           </svg>
         </div>
-        <DialogBody className="min-h-[480px]">
+        <DialogBody className="max-h-[492px] md:max-h-[510px] min-h-[480px]">
           <Typography
             className="mb-8 -mt-7 text-[14px] md:text-[18px]"
             color="gray"
@@ -97,6 +97,16 @@ export function TaskDetails({ taskData, taskName, status }) {
               {taskData && taskData.length > 0 ? estado : 0}% <GiProgression />
             </div>
           </div>
+
+          <Typography className="text-xs mt-2">
+            {status === "initialized"
+              ? translations.inProgress
+              : status === "done"
+              ? translations.done
+              : status === "standby"
+              ? translations.waiting
+              : ""}
+          </Typography>
 
           <div className="grid gap-6 mt-5">
             <Typography
@@ -171,16 +181,6 @@ export function TaskDetails({ taskData, taskName, status }) {
                 ))
               : translations && translations.noSubActivitiesText}
           </List>
-
-          <Typography className="text-xs mt-2">
-            {status === "initialized"
-              ? translations.inProgress
-              : status === "done"
-              ? translations.done
-              : status === "standby"
-              ? translations.waiting
-              : ""}
-          </Typography>
         </DialogBody>
         <DialogFooter className="space-x-2 flex items-center justify-between">
           <div className="flex items-center gap-4">
