@@ -79,6 +79,7 @@ export default function TaskFlowApp() {
                   <input
                     type="checkbox"
                     id={item.id}
+                    color="#ffffff"
                     checked={selectedProject === item.name}
                     onChange={() => handleCheckboxChange(item)}
                   />
@@ -131,14 +132,14 @@ export default function TaskFlowApp() {
                     <MenuList>
                       <MenuItem
                         disabled={projectData.activities.length > 0}
-                        className="flex gap-2 text-sm border-none outline-none hover:border-none active:border-none"
+                        className="flex gap-2 text-sm border-none outline-none hover:border-none active:border-none bg-white"
                       >
                         <RiDeleteBack2Fill size={18} />
                         {translations.deleteProject}
                       </MenuItem>
                       <MenuItem
                         disabled={!projectData.activities.length}
-                        className="flex gap-2 text-sm border-none outline-none hover:border-none active:border-none"
+                        className="flex gap-2 text-sm border-none outline-none hover:border-none active:border-none bg-white"
                       >
                         <RiDeleteBack2Fill size={18} />
                         Excluir * atividades
