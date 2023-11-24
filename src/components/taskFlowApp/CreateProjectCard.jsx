@@ -26,7 +26,10 @@ export function CreateProjectCard() {
       </Button>
       <Drawer open={open}>
         <div className="flex items-center justify-between px-4 pb-2 mt-5">
-          <Typography className="mb-1 text-[16px] md:text-[20px]" variant="h4">
+          <Typography
+            className="mb-1 text-[16px] md:text-[20px] text-gray-900"
+            variant="h4"
+          >
             Criando projeto
           </Typography>
           <IconButton variant="text" color="blue-gray" onClick={closeDrawer}>
