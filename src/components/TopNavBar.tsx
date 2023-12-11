@@ -1,10 +1,9 @@
 import React from "react";
 import {
   Navbar,
-  MobileNav,
+  Collapse,
   Typography,
   Button,
-  IconButton,
   Menu,
   MenuHandler,
   MenuList,
@@ -15,11 +14,22 @@ import {
 
 import { RxDashboard } from "react-icons/rx";
 import { FaLanguage } from "react-icons/fa6";
+import { LuMenu } from "react-icons/lu";
+import { CgClose, CgRadioChecked } from "react-icons/cg";
 import { useLang } from "../../hook/LangContext";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { signOut } from "firebase/auth";
+import { auth } from "../firebase";
 
-export default function TopNavBar() {
-  const [openNav, setOpenNav] = React.useState(false);
+export default function TopNavBar({ getCurrentTab }) {
+  const [openNav, setOpenNav] = useState(false);
   const { language, switchLanguage, translations } = useLang();
+  const [correntTab, setCurrentTab] = useState("over_view");
+
+  // const user = JSON.parse(localStorage.getItem("user"));
+  const userString = localStorage.getItem("user");
+  const user = userString ? JSON.parse(userString) : null;
 
   React.useEffect(() => {
     window.addEventListener(
@@ -28,24 +38,59 @@ export default function TopNavBar() {
     );
   }, []);
 
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    await signOut(auth);
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    navigate("/login");
+  };
+
+  const handleTabNavigation = (currentTabRoute: any) => {
+    setCurrentTab(currentTabRoute);
+    getCurrentTab(currentTabRoute);
+  };
+
   const navList = (
-    <ul className="mt-2 mb-4 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
+    <ul className="mt-2 mb-4 flex md:flex-col flex-wrap gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
       <Chip
         value={translations.overview}
-        className="rounded-full capitalize flex items-center transition cursor-pointer bg-[#4c41df52] active:bg-[#e2e2e211] hover:bg-[#e2e2e22c] px-4 py-2"
+        className="rounded-full capitalize flex items-center transition cursor-pointer active:bg-[#e2e2e211] hover:bg-[#e2e2e22c] px-4 py-2"
+        style={{
+          backgroundColor:
+            correntTab === "over_view" ? "#4b41dff3" : "#4c41df52",
+        }}
         icon={<RxDashboard size={18} className="ml-1" />}
+        onClick={() => handleTabNavigation("over_view")}
       />
       <Chip
         value={translations.inProgress}
         className="rounded-full capitalize flex items-center transition cursor-pointer bg-[#4c41df52] active:bg-[#e2e2e211] hover:bg-[#e2e2e22c] px-4 py-2"
+        style={{
+          backgroundColor:
+            correntTab === "initialized" ? "#4b41dff3" : "#4c41df52",
+        }}
+        icon={<CgRadioChecked size={18} className="ml-1" />}
+        onClick={() => handleTabNavigation("initialized")}
       />
       <Chip
         value={translations.waiting}
         className="rounded-full capitalize flex items-center transition cursor-pointer bg-[#4c41df52] active:bg-[#e2e2e211] hover:bg-[#e2e2e22c] px-4 py-2"
+        style={{
+          backgroundColor: correntTab === "standby" ? "#4b41dff3" : "#4c41df52",
+        }}
+        icon={<CgRadioChecked size={18} className="ml-1" />}
+        onClick={() => handleTabNavigation("standby")}
       />
       <Chip
         value={translations.done}
         className="rounded-full capitalize flex items-center transition cursor-pointer bg-[#4c41df52] active:bg-[#e2e2e211] hover:bg-[#e2e2e22c] px-4 py-2"
+        style={{
+          backgroundColor: correntTab === "done" ? "#4b41dff3" : "#4c41df52",
+        }}
+        icon={<CgRadioChecked size={18} className="ml-1" />}
+        onClick={() => handleTabNavigation("done")}
       />
     </ul>
   );
@@ -93,7 +138,6 @@ export default function TopNavBar() {
         <div className="mr-4 hidden lg:block">{navList}</div>
         <div className="flex items-center gap-4">
           <Menu>
-            {/* <FaLanguage size={30} /> */}
             <Menuu />
             <MenuHandler>
               <Avatar
@@ -122,10 +166,10 @@ export default function TopNavBar() {
                 </svg>
 
                 <Typography variant="small" className="font-medium">
-                  My Profile
+                  {user && user.email.split("@")[0]}
                 </Typography>
               </MenuItem>
-              <MenuItem className="flex items-center gap-2 bg-white">
+              {/* <MenuItem className="flex items-center gap-2 bg-white">
                 <svg
                   width="16"
                   height="16"
@@ -164,28 +208,14 @@ export default function TopNavBar() {
                 <Typography variant="small" className="font-medium">
                   Inbox
                 </Typography>
-              </MenuItem>
-              <MenuItem className="flex items-center gap-2 bg-white">
-                <svg
-                  width="16"
-                  height="16"
-                  viewBox="0 0 16 16"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    clip-rule="evenodd"
-                    d="M16 8C16 10.1217 15.1571 12.1566 13.6569 13.6569C12.1566 15.1571 10.1217 16 8 16C5.87827 16 3.84344 15.1571 2.34315 13.6569C0.842855 12.1566 0 10.1217 0 8C0 5.87827 0.842855 3.84344 2.34315 2.34315C3.84344 0.842855 5.87827 0 8 0C10.1217 0 12.1566 0.842855 13.6569 2.34315C15.1571 3.84344 16 5.87827 16 8ZM14 8C14 8.993 13.759 9.929 13.332 10.754L11.808 9.229C12.0362 8.52269 12.0632 7.76679 11.886 7.046L13.448 5.484C13.802 6.249 14 7.1 14 8ZM8.835 11.913L10.415 13.493C9.654 13.8281 8.83149 14.0007 8 14C7.13118 14.0011 6.27257 13.8127 5.484 13.448L7.046 11.886C7.63267 12.0298 8.24426 12.039 8.835 11.913ZM4.158 9.117C3.96121 8.4394 3.94707 7.72182 4.117 7.037L4.037 7.117L2.507 5.584C2.1718 6.34531 1.99913 7.16817 2 8C2 8.954 2.223 9.856 2.619 10.657L4.159 9.117H4.158ZM5.246 2.667C6.09722 2.22702 7.04179 1.99825 8 2C8.954 2 9.856 2.223 10.657 2.619L9.117 4.159C8.34926 3.93538 7.53214 3.94687 6.771 4.192L5.246 2.668V2.667ZM10 8C10 8.53043 9.78929 9.03914 9.41421 9.41421C9.03914 9.78929 8.53043 10 8 10C7.46957 10 6.96086 9.78929 6.58579 9.41421C6.21071 9.03914 6 8.53043 6 8C6 7.46957 6.21071 6.96086 6.58579 6.58579C6.96086 6.21071 7.46957 6 8 6C8.53043 6 9.03914 6.21071 9.41421 6.58579C9.78929 6.96086 10 7.46957 10 8Z"
-                    fill="#90A4AE"
-                  />
-                </svg>
-                <Typography variant="small" className="font-medium">
-                  Help
-                </Typography>
-              </MenuItem>
+              </MenuItem> */}
+
               <hr className="my-2 border-blue-gray-50" />
-              <MenuItem className="flex items-center gap-2 bg-white">
+              {/* <Link to="/login"> */}
+              <MenuItem
+                className="flex items-center gap-2 bg-white"
+                onClick={handleLogout}
+              >
                 <svg
                   width="16"
                   height="14"
@@ -200,62 +230,23 @@ export default function TopNavBar() {
                     fill="#90A4AE"
                   />
                 </svg>
+
                 <Typography variant="small" className="font-medium">
                   Sign Out
                 </Typography>
               </MenuItem>
+              {/* </Link> */}
             </MenuList>
           </Menu>
-          <IconButton
-            variant="text"
-            className="ml-auto h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
-            ripple={false}
+          <div
+            className="ml-auto h-6 w-6 text-inherit hover:bg-transparent flex items-center justify-center focus:bg-transparent active:bg-[#554cd852] rounded-full lg:hidden"
             onClick={() => setOpenNav(!openNav)}
           >
-            {openNav ? (
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                className="h-6 w-6"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth={2}
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              </svg>
-            ) : (
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth={2}
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
-              </svg>
-            )}
-          </IconButton>
+            {openNav ? <CgClose size={22} /> : <LuMenu size={22} />}
+          </div>
         </div>
       </div>
-      <MobileNav open={openNav}>
-        {navList}
-        {/* <div className="flex items-center gap-x-1">
-          <Button fullWidth variant="text" size="sm" className="">
-            <span>Log In</span>
-          </Button>
-          <Button fullWidth variant="filled" size="sm" className="">
-            <span>Sign Out</span>
-          </Button>
-        </div> */}
-      </MobileNav>
+      <Collapse open={openNav}>{navList}</Collapse>
     </Navbar>
   );
 }

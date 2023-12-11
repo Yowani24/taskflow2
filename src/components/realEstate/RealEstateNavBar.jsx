@@ -1,11 +1,12 @@
 import React from "react";
 import {
   Navbar,
-  MobileNav,
+  Collapse,
   Typography,
   Button,
   IconButton,
   Card,
+  Input,
 } from "@material-tailwind/react";
 
 export default function RealEstateNavBar() {
@@ -41,7 +42,7 @@ export default function RealEstateNavBar() {
           href="#"
           className="flex items-center text-black font-medium hover:text-black"
         >
-          Venda
+          Guest house
         </a>
       </Typography>
       <Typography
@@ -82,7 +83,18 @@ export default function RealEstateNavBar() {
         >
           Real Estate
         </Typography>
-        <div className="mr-4 hidden lg:block">{navList}</div>
+        <div className="mr-4 hidden lg:block">
+          {navList}
+          <div className="mt-4">
+            <Input
+              label="Pesquise por cidade, bairro, zona, tipo de imóvel..."
+              className="bg-red-400"
+              containerProps={{
+                className: "mb-4",
+              }}
+            />
+          </div>
+        </div>
         <div className="flex items-center gap-4">
           {/* <div className="mr-4 hidden lg:block">{navList}</div> */}
           <div className="flex items-center gap-x-1">
@@ -136,8 +148,9 @@ export default function RealEstateNavBar() {
           </IconButton>
         </div>
       </div>
-      <MobileNav open={openNav}>
+      <Collapse open={openNav}>
         {navList}
+
         <div className="flex items-center gap-x-1">
           <Button fullWidth variant="text" size="sm" className="">
             <span>Log In</span>
@@ -146,7 +159,7 @@ export default function RealEstateNavBar() {
             <span>Sign in</span>
           </Button>
         </div>
-      </MobileNav>
+      </Collapse>
     </Navbar>
   );
 }

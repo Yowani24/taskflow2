@@ -30,5 +30,17 @@
   "deleteActivity": "Delete activity",
   "deleteAllSubactivities": "Delete all subactivities",
   "projectTitle": "Project name",
-  "user": "User"
+  "user": "User",
+  "no_projects_registered": "No projects registered",
+  "references": "References",
+  "specification": "specification",
+  "specs": "specs",
+  "my_profile": "My profile",
+  "language": "Language",
+  "hello": "Hello!",
+  "password": "Password",
+  "your_email": "Your Email",
+  "sign_in": "Sign In",
+  "dont_have_an_account_yet": "Don't have an account yet?",
+  "sign_up": "Sign Up"
 }

@@ -93,27 +93,15 @@ button:focus-visible {
   transform: rotate(35deg);
   margin: 40px;
 }
-/* #octagon:before {
-  content: "";
+
+/* .react-datepicker-ignore-onclickoutside,
+input {
+  border: 1px solid #a0aec0;
+  color: #4a5568;
+  border-radius: 6px;
+  height: 35px;
   width: 100px;
-  height: 0;
-  position: absolute;
-  top: 0;
-  left: 0;
-  border-bottom: 29px solid red;
-  border-left: 29px solid green;
-  border-right: 29px solid #eee;
-} */
-/* #octagon:after {
-  content: "";
-  width: 100px;
-  height: 0;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  background-color: yellow;
-  border-top: 29px solid red;
-  border-left: 29px solid #eee;
-  border-right: 29px solid #eee;
-  border-right: 20px solid green;
+  text-align: center;
+  font-size: 14px;
+  letter-spacing: 0.5px;
 } */

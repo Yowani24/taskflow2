@@ -30,5 +30,17 @@
   "deleteActivity": "Excluir atividade",
   "deleteAllSubactivities": "Excluir todas as atividades",
   "projectTitle": "Nome do projeto",
-  "user": "Usuário"
+  "user": "Usuário",
+  "no_projects_registered": "Sem projetos cadastrados",
+  "references": "Referências",
+  "specification": "especificações",
+  "specs": "especs",
+  "my_profile": "Meu perfil",
+  "language": "Idioma",
+  "hello": "Ola!",
+  "password": "Senha",
+  "your_email": "Seu E-mail",
+  "sign_in": "Entrar",
+  "dont_have_an_account_yet": "Não tem uma conta ainda?",
+  "sign_up": "Registrar-se"
 }

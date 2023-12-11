@@ -1,10 +1,10 @@
 import React, { createContext, useState, useContext, useEffect } from "react";
 
 const LangContext = createContext();
-// const aqui = require("./translations/translations_en.json")
 
 export const LangProvider = ({ children }) => {
-  const [language, setLanguage] = useState("pt");
+  const savedLanguage = localStorage.getItem("language");
+  const [language, setLanguage] = useState(savedLanguage || "pt");
   const [translations, setTranslations] = useState({});
 
   const switchLanguage = (newLanguage) => {
@@ -25,6 +25,10 @@ export const LangProvider = ({ children }) => {
     };
 
     loadTranslations();
+  }, [language]);
+
+  useEffect(() => {
+    localStorage.setItem("language", language);
   }, [language]);
 
   return (

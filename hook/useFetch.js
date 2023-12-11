@@ -1,307 +1,144 @@
-import { useState, useEffect } from "react";
-// import axios from "axios";
+import axios from "axios";
+import { useState } from "react";
+import { useMutation, useQuery } from "react-query";
 
-const tasks = [
-  {
-    id: 1,
-    name: "Multi Cliente",
-    activities: [
-      {
-        id: 1,
-        name: "Implementação de gráficos de demonstrações financeiras",
-        percentage: 68,
-        user_name: "João da Costa",
-        start: "10/04/2023",
-        end: "20/04/2023",
-        status: "initialized",
-        sub_activities: [
-          { id: 1, name: "Implementar o HTML", status: "done" },
-          {
-            id: 2,
-            name: "Fazer integração com o backend",
-            status: "initialized",
-          },
-          {
-            id: 3,
-            name: "Fazer testes funcionas e de usablidade",
-            status: "uninitialized",
-          },
-          { id: 4, name: "Fazer homologação", status: "uninitialized" },
-          { id: 5, name: "Implementar o HTML", status: "done" },
-          {
-            id: 6,
-            name: "Fazer integração com o backend",
-            status: "initialized",
-          },
-          {
-            id: 7,
-            name: "Fazer testes funcionas e de usablidade",
-            status: "uninitialized",
-          },
-          { id: 8, name: "Fazer homologação", status: "uninitialized" },
-        ],
-      },
-      {
-        id: 2,
-        name: "Implementação de gráficos de demonstrações financeiras. Implementação de gráficos de demonstrações financeiras.",
-        percentage: 100,
-        user_name: "João da Costa",
-        start: "10/04/2023",
-        end: "20/04/2023",
-        status: "done",
-        sub_activities: [
-          { id: 1, name: "Implementar o HTML", status: "done" },
-          {
-            id: 2,
-            name: "Fazer integração com o backend",
-            status: "initialized",
-          },
-          {
-            id: 3,
-            name: "Fazer testes funcionas e de usablidade",
-            status: "uninitialized",
-          },
-          { id: 4, name: "Fazer homologação", status: "uninitialized" },
-        ],
-      },
-      {
-        id: 3,
-        name: "Implementação de gráficos de demonstrações financeiras. Implementação de gráficos de demonstrações financeiras.",
-        percentage: 35,
-        user_name: "João da Costa",
-        start: "10/04/2023",
-        end: "20/04/2023",
-        status: "standby",
-        sub_activities: [
-          { id: 1, name: "Implementar o HTML", status: "done" },
-          {
-            id: 2,
-            name: "Fazer integração com o backend",
-            status: "initialized",
-          },
-          {
-            id: 3,
-            name: "Fazer testes funcionas e de usablidade",
-            status: "uninitialized",
-          },
-          { id: 4, name: "Fazer homologação", status: "uninitialized" },
-        ],
-      },
-      {
-        id: 4,
-        name: "Implementação de gráficos de demonstrações financeiras. Implementação de gráficos de demonstrações financeiras.",
-        percentage: 92,
-        user_name: "João da Costa",
-        start: "10/04/2023",
-        end: "20/04/2023",
-        status: "initialized",
-        sub_activities: [
-          { id: 1, name: "Implementar o HTML", status: "done" },
-          {
-            id: 2,
-            name: "Fazer integração com o backend",
-            status: "initialized",
-          },
-          {
-            id: 3,
-            name: "Fazer testes funcionas e de usablidade",
-            status: "uninitialized",
-          },
-          { id: 4, name: "Fazer homologação", status: "uninitialized" },
-        ],
-      },
-      {
-        id: 5,
-        name: "Implementação de gráficos de demonstrações financeiras. Implementação de gráficos de demonstrações financeiras.",
-        percentage: 68,
-        user_name: "João da Costa",
-        start: "10/04/2023",
-        end: "20/04/2023",
-        status: "initialized",
-        sub_activities: [
-          { id: 1, name: "Implementar o HTML", status: "done" },
-          {
-            id: 2,
-            name: "Fazer integração com o backend",
-            status: "initialized",
-          },
-          {
-            id: 3,
-            name: "Fazer testes funcionas e de usablidade",
-            status: "uninitialized",
-          },
-          { id: 4, name: "Fazer homologação", status: "uninitialized" },
-        ],
-      },
-    ],
-  },
-  {
-    id: 2,
-    name: "Itaú",
-    activities: [
-      {
-        id: 1,
-        name: "Implementação de gráficos de demonstrações financeiras. Implementação de gráficos de demonstrações financeiras.",
-        percentage: 68,
-        user_name: "João da Costa",
-        start: "10/04/2023",
-        end: "20/04/2023",
-        status: "initialized",
-        sub_activities: [],
-      },
-    ],
-  },
-  {
-    id: 3,
-    name: "Santamder",
-    activities: [],
-  },
-];
-
+// const api_url = "http://localhost:3000";
 const api_url = "https://taskflowapi2.onrender.com";
 
-const useFetch = (endpoint, query) => {
-  const [data, setData] = useState([]);
-  const [subActivityData, setSubActivityData] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-  let [color, setColor] = useState("#ffffff");
+const useFetch = () => {
+  const { data, isLoading, refetch } = useQuery("project", async () => {
+    return await axios
+      .get(`${api_url}/project`)
+      .then((response) => response.data);
+  });
 
-  // const fetchData = async () => {
-  //   setLoading(true);
-  //   try {
-  //     const response = await axios.get("api_url/project");
-  //     setData(response.data);
-  //   } catch (error) {
-  //     setError(error);
-  //     console.error(error.message);
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
-  // const refetch = () => {
-  //   fetchData();
-  // };
-
-  const fetchData = async () => {
-    setLoading(true);
-
-    try {
-      const [projectResponse, subactivityResponse] = await Promise.all([
-        axios.get(`${api_url}/project`),
-        axios.get(`${api_url}/subactivity`),
-      ]);
-
-      setData(projectResponse.data);
-      setSubActivityData(subactivityResponse.data);
-    } catch (error) {
-      setError(error);
-      console.error(error.message);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  const refetch = () => {
-    fetchData();
-  };
-
-  const handleProcessUpdate = async (data, id) => {
-    try {
-      await axios.patch(`${api_url}/dadoshistorico/${id}`, data[0]);
+  const handleCreateProject = useMutation({
+    mutationFn: async (values) => {
+      return await axios
+        .post(`${api_url}/project`, values)
+        .then((response) => response.data);
+    },
+    onSuccess: (data) => {
       refetch();
-    } catch (error) {
-      console.error(error.message);
-    }
-  };
+      // console.log({ data });
+    },
+    onError: (error) => {
+      console.error(error);
+    },
+  });
 
-  const handleCreateProject = async (
-    name,
-    activity,
-    start,
-    end,
-    user_name,
-    handleClose
-  ) => {
-    try {
-      await axios.post(`${api_url}/project`, {
-        name,
-        activity,
-        start,
-        end,
-        user_name,
-      });
-      handleClose();
+  const handleDeleteProject = useMutation({
+    mutationFn: async (projectId) => {
+      return await axios.delete(`${api_url}/project/${projectId}`);
+    },
+    onSuccess: () => {
       refetch();
-    } catch (error) {
-      console.error(error.message);
-    }
-  };
+    },
+    onError: (error) => {
+      console.error(error);
+    },
+  });
 
-  const handleDeleteProject = async (projectId) => {
-    try {
-      await axios.delete(`${api_url}/project/${projectId}`);
+  //=================================ACTIVITY===============================================
+
+  const handleCreateActivity = useMutation({
+    mutationFn: async ({ start, end, ...values }) => {
+      return await axios.post(`${api_url}/activity`, { ...values, start, end });
+    },
+    onSuccess: () => {
       refetch();
-    } catch (error) {
-      console.error("Erro ao deletar projeto");
-    }
-  };
+    },
+    onError: (error) => {
+      console.error(error);
+    },
+  });
 
-  // const handleDeleteProject = async (projectId) => {
-  //   try {
-  //     await axios.delete(`api_url/subactivity/${projectId}`);
-  //     await axios.delete(`api_url/project/${projectId}`);
-  //     refetch();
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
-
-  const handleCreateSubActivity = async (name, projectId) => {
-    try {
-      await axios.post(`${api_url}/subactivity`, {
-        name,
-        projectId,
-      });
+  const handleUpdateActivity = useMutation({
+    mutationFn: async ({ activityId, percentage, status }) => {
+      // console.log(activityId, "-", percentage);
+      return await axios
+        .patch(`${api_url}/activity/${activityId}`, {
+          percentage,
+          status,
+        })
+        .then((response) => response.data);
+    },
+    onSuccess: (data) => {
       refetch();
-    } catch (error) {
-      console.error("Erro ao criar SubActividade", error);
-    }
-  };
+      // console.log({ data });
+    },
+    onError: (error) => {
+      console.error(error);
+    },
+  });
 
-  const handleDeleteSubActivity = async (subactivityId) => {
-    try {
-      await axios.delete(`${api_url}/subactivity/${subactivityId}`);
+  const handleDeleteActivity = useMutation({
+    mutationFn: async (activityId) => {
+      return await axios.delete(`${api_url}/activity/${activityId}`);
+    },
+    onSuccess: () => {
       refetch();
-    } catch (error) {
-      console.error("Erro ao deletar SubActividade");
-    }
-  };
+    },
+    onError: (error) => {
+      console.error(error);
+    },
+  });
 
-  // useEffect(() => {
-  //   fetchData();
-  // }, []);
+  //=================================SUBACTIVITY===============================================
 
-  // const refetch = () => {
-  //   fetchData();
-  // };
+  const handleCreateSubActivity = useMutation({
+    mutationFn: async (values) => {
+      return await axios.post(`${api_url}/subactivity`, values);
+    },
+    onSuccess: () => {
+      refetch();
+    },
+    onError: (error) => {
+      console.error(error);
+    },
+  });
+
+  const handleUpdateSubActivity = useMutation({
+    mutationFn: async ({ subActivityId, status }) => {
+      return await axios
+        .patch(`${api_url}/subactivity/${subActivityId}`, {
+          status,
+        })
+        .then((response) => response.data);
+    },
+    onSuccess: (data) => {
+      refetch();
+      console.log({ data });
+    },
+    onError: (error) => {
+      console.error(error);
+    },
+  });
+
+  const handleDeleteSubActivity = useMutation({
+    mutationFn: async (subActivityId) => {
+      return await axios.delete(`${api_url}/subactivity/${subActivityId}`);
+    },
+    onSuccess: () => {
+      refetch();
+    },
+    onError: (error) => {
+      console.error(error);
+    },
+  });
 
   return {
     data,
-    subActivityData,
-    loading,
-    error,
+    isLoading,
     handleCreateProject,
     handleDeleteProject,
+    handleCreateActivity,
+    handleDeleteActivity,
     handleCreateSubActivity,
-    handleProcessUpdate,
     handleDeleteSubActivity,
+    handleUpdateSubActivity,
+    handleUpdateActivity,
     refetch,
-    tasks,
   };
 };
 

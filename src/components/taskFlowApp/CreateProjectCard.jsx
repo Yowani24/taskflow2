@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import {
   Drawer,
   Button,
@@ -9,12 +9,38 @@ import {
 } from "@material-tailwind/react";
 import { useLang } from "../../../hook/LangContext";
 import { MdAddCircle } from "react-icons/md";
+import useFetch from "../../../hook/useFetch";
+import { useFormik } from "formik";
+import * as Yup from "yup";
 
 export function CreateProjectCard() {
+  const { handleCreateProject } = useFetch();
   const [open, setOpen] = React.useState(false);
+  const [anexo, setAnexo] = React.useState(null);
   const openDrawer = () => setOpen(true);
   const closeDrawer = () => setOpen(false);
   const { translations } = useLang();
+
+  const user = JSON.parse(localStorage.getItem("user"));
+
+  const Formik = useFormik({
+    initialValues: {
+      name: "",
+      userCreatedEmail: user.email,
+    },
+    validationSchema: Yup.object({
+      name: Yup.string().required("Required"),
+    }),
+    onSubmit: async (values, { resetForm }) => {
+      try {
+        handleCreateProject.mutate(values);
+        closeDrawer();
+        resetForm();
+      } catch (error) {
+        console.error(error.message);
+      }
+    },
+  });
 
   return (
     <React.Fragment>
@@ -49,12 +75,11 @@ export function CreateProjectCard() {
             </svg>
           </IconButton>
         </div>
-        {/* <div className="mb-5 px-4">
-          <Typography variant="small" color="gray" className="font-normal ">
-            Insira os detalhes do projeto
-          </Typography>
-        </div> */}
-        <form className="flex flex-col gap-6 p-4">
+
+        <form
+          className="flex flex-col gap-6 p-4"
+          onSubmit={Formik.handleSubmit}
+        >
           <div className="grid gap-6">
             <Typography
               className="-mb-5 md:-mb-2 text-[13px] text-gray-700"
@@ -63,7 +88,7 @@ export function CreateProjectCard() {
             >
               {translations.user}
             </Typography>
-            <Input label="Username" disabled value={"João da Costa"} />
+            <Input label="Username" disabled value={user && user.email} />
           </div>
 
           <div className="grid gap-6 mt-5">
@@ -74,10 +99,34 @@ export function CreateProjectCard() {
             >
               {translations.projectTitle}
             </Typography>
-            <Input label={translations.projectTitle} />
-            {/* <Textarea label="Message" /> */}
+            <Input
+              label={translations.projectTitle}
+              name="name"
+              onChange={Formik.handleChange}
+              value={Formik.values.name}
+            />
           </div>
-          <Button>{translations.createProject}</Button>
+          {/* <div className="flex items-center gap-2">
+            <input
+              type="file"
+              className="hidden"
+              ref={fileInputRef}
+              name="attachment"
+              onChange={(e) => {
+                Formik.handleChange(e);
+                handleFileChange();
+              }}
+            />
+            <div className="bg-[#938edb52]" onClick={handleButtonClick}>
+              anexo
+            </div>
+            <span className="text-xs bg-gray-100 p-1 px-2 rounded-md">
+              {anexo}
+            </span>
+          </div> */}
+          <Button type="submit" disabled={Formik.isSubmitting}>
+            {translations.createProject}
+          </Button>
         </form>
       </Drawer>
     </React.Fragment>
