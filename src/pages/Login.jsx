@@ -103,6 +103,7 @@ export default function Login() {
                 {translations.your_email}
               </Typography>
               <Input
+                type="email"
                 size="lg"
                 placeholder="name@mail.com"
                 required
