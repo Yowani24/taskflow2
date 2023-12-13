@@ -36,7 +36,7 @@ export default function TaskFlowApp() {
   React.useEffect(() => {
     if (!isLoading && data) {
       setProjectsData(
-        data.filter((userEmail) => userEmail.userCreatedEmail === user.email)
+        data.filter((userEmail) => userEmail?.userCreatedEmail === user?.email)
       );
     }
   }, [data, isLoading]);

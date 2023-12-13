@@ -49,7 +49,7 @@ export default function Register() {
   };
   return (
     <div className="h-screen flex items-center justify-between">
-      <div className="relative flex flex-col items-center justify-center h-full w-[50%]">
+      <div className="relative flex flex-col items-center justify-center h-full w-full md:w-[50%]">
         <div className="flex items-center gap-4 absolute top-10 right-10">
           <Menu>
             <span className="text-xs text-gray-500">
@@ -152,7 +152,7 @@ export default function Register() {
         </Card>
       </div>
       <div
-        className="h-full w-[50%]"
+        className="h-full w-[50%] hidden md:flex"
         style={{
           backgroundImage: `url(https://images.unsplash.com/photo-1648737965484-dd50b35532fb?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)`,
           backgroundRepeat: "no-repeat",

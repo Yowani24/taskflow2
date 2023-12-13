@@ -2,8 +2,8 @@ import axios from "axios";
 import { useState } from "react";
 import { useMutation, useQuery } from "react-query";
 
-// const api_url = "http://localhost:3000";
-const api_url = "https://taskflowapi2.onrender.com";
+const api_url = "http://localhost:3000";
+// const api_url = "https://taskflowapi2.onrender.com";
 
 const useFetch = () => {
   const { data, isLoading, refetch } = useQuery("project", async () => {
