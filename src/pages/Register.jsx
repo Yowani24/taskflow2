@@ -48,8 +48,8 @@ export default function Register() {
     }
   };
   return (
-    <div className="h-screen flex items-center justify-between">
-      <div className="relative flex flex-col items-center justify-center h-full w-full md:w-[50%]">
+    <div className="h-screen flex items-center justify-between bg-white">
+      <div className="relative flex flex-col items-center justify-center h-full w-full md:w-[50%] bg-white">
         <div className="flex items-center gap-4 absolute top-10 right-10">
           <Menu>
             <span className="text-xs text-gray-500">
