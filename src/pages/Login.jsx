@@ -42,7 +42,6 @@ export default function Login() {
         email,
         password
       );
-      // console.log(userCredential);
       const user = userCredential.user;
       localStorage.setItem("token", await user.getIdToken());
       localStorage.setItem("user", JSON.stringify(user));
