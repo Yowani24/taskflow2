@@ -132,7 +132,7 @@ export default function ShowCase() {
         <h1 className="text-[30px] md:text-[60px] font-medium mt-[-150px] mb-10 md:mb-20 text-[#4b41dff3]">
           {translations.welcome_to_flexflow}
         </h1>
-        <h1 className="text-[25px] md:text-[60px] font-medium w-[80%] md:w-[60%]">
+        <h1 className="text-[25px] text-gray-900 md:text-[60px] font-medium w-[80%] md:w-[60%]">
           {translations.showcase_intro}
         </h1>
         <Link to="/taskflow">
