@@ -17,6 +17,7 @@ import en_flag from "../assets/en_flag.jpg";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase";
 import { RotatingLines } from "react-loader-spinner";
+import logo from "../assets/flexflowlogo2.png";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -41,7 +42,7 @@ export default function Login() {
         email,
         password
       );
-      console.log(userCredential);
+      // console.log(userCredential);
       const user = userCredential.user;
       localStorage.setItem("token", await user.getIdToken());
       localStorage.setItem("user", JSON.stringify(user));
@@ -56,39 +57,47 @@ export default function Login() {
   return (
     <div className="h-screen flex items-center justify-between bg-white">
       <div className="relative flex flex-col items-center justify-center h-full w-full md:w-[50%] bg-white">
-        <div className="flex items-center gap-4 absolute top-10 right-10">
-          <Menu>
-            <span className="text-xs text-gray-500">
-              {translations.language}
-            </span>
-            <MenuHandler>
-              <Avatar
-                variant="circular"
-                size="xs"
-                alt="language"
-                className="cursor-pointer w-8 h-8 md:w-8 md:h-8"
-                src={language === "pt" ? br_flag : en_flag}
-              />
-            </MenuHandler>
-            <MenuList>
-              <MenuItem
-                className="flex items-center gap-2 bg-white"
-                onClick={() => switchLanguage("pt")}
-              >
-                <Typography variant="small" className="font-medium">
-                  {translations.language_pt}
-                </Typography>
-              </MenuItem>
-              <MenuItem
-                className="flex items-center gap-2 bg-white"
-                onClick={() => switchLanguage("en")}
-              >
-                <Typography variant="small" className="font-medium">
-                  {translations.language_en}
-                </Typography>
-              </MenuItem>
-            </MenuList>
-          </Menu>
+        <div className="w-full flex items-center justify-between gap-4 absolute top-10 px-7 md:px-10">
+          <img
+            className="object-cover object-center"
+            src={logo}
+            alt="nature image"
+            width={"30%"}
+          />
+          <div>
+            <Menu>
+              <span className="text-xs text-gray-500 mr-4">
+                {translations.language}
+              </span>
+              <MenuHandler>
+                <Avatar
+                  variant="circular"
+                  size="xs"
+                  alt="language"
+                  className="cursor-pointer w-8 h-8 md:w-8 md:h-8"
+                  src={language === "pt" ? br_flag : en_flag}
+                />
+              </MenuHandler>
+              <MenuList>
+                <MenuItem
+                  className="flex items-center gap-2 bg-white"
+                  onClick={() => switchLanguage("pt")}
+                >
+                  <Typography variant="small" className="font-medium">
+                    {translations.language_pt}
+                  </Typography>
+                </MenuItem>
+                <MenuItem
+                  className="flex items-center gap-2 bg-white"
+                  onClick={() => switchLanguage("en")}
+                >
+                  <Typography variant="small" className="font-medium">
+                    {translations.language_en}
+                  </Typography>
+                </MenuItem>
+              </MenuList>
+            </Menu>
+          </div>
         </div>
         <Card color="transparent" shadow={false}>
           <Typography variant="h4" color="blue-gray" className="text-3xl">

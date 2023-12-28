@@ -15,12 +15,11 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import useFetch from "../../../hook/useFetch";
 import { useState } from "react";
-import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 export function CreateActivity({ projectName, projectId }) {
   const { translations } = useLang();
-  const { handleCreateActivity } = useFetch();
+  const { handleCreateActivity, isLoading } = useFetch();
   const [open, setOpen] = React.useState(false);
   // const [startDate, setStartDate] = useState(new Date());
   // const [endDate, setEndDate] = useState(
@@ -50,7 +49,7 @@ export function CreateActivity({ projectName, projectId }) {
     }),
     onSubmit: async (values, { resetForm }) => {
       try {
-        await handleCreateActivity.mutate({
+        handleCreateActivity.mutate({
           ...values,
           start: new Date(values.start).toISOString(),
           end: new Date(values.end).toISOString(),
@@ -117,7 +116,7 @@ export function CreateActivity({ projectName, projectId }) {
                 name="name"
                 onChange={Formik.handleChange}
                 value={Formik.values.name}
-                className=""
+                required
               />
               <div className="flex items-center gap-2 md:gap-0 flex-col sm:flex-row justify-between md:px-16 mb-10">
                 <div>
@@ -130,6 +129,7 @@ export function CreateActivity({ projectName, projectId }) {
                     // onChange={
                     //   (Formik.handleChange, setStartDate(Formik.values.start))
                     // }
+                    required
                     onChange={(e) => {
                       Formik.handleChange(e);
                       setStartDate(e.target.value);
@@ -152,6 +152,7 @@ export function CreateActivity({ projectName, projectId }) {
                   <Input
                     type="date"
                     name="end"
+                    required
                     onChange={Formik.handleChange}
                     value={Formik.values.end}
                     containerProps={{ className: "md:min-w-[72px]" }}

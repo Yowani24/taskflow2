@@ -1,19 +1,30 @@
 import { signOut } from "firebase/auth";
 import React from "react";
 import { auth } from "../firebase";
+import pagenotFoundImage from "../assets/pagenotfound.png";
+import { Button } from "@material-tailwind/react";
+import { Link } from "react-router-dom";
+
+const divStyle = {
+  backgroundImage: `url(${pagenotFoundImage})`,
+  backgroundSize: "cover",
+  backgroundPosition: "center",
+  backgroundRepeat: "no-repeat",
+};
 
 export default function PageNotFound() {
-  const handleLogout = async () => {
-    await signOut(auth);
-    localStorage.removeItem("token");
-    localStorage.removeItem("user");
-  };
   return (
     <div
-      onClick={handleLogout}
-      className="flex items-center justify-center h-screen"
+      className="flex items-start justify-center h-screen w-full relative"
+      style={divStyle}
     >
-      <h1 className="text-2xl font-bold">Essa pagina não existe!</h1>
+      <Link to="/home" className="absolute top-20">
+        <Button className="bg-white text-black font-semibold">
+          Go to Home
+        </Button>
+      </Link>
     </div>
   );
 }
+
+//

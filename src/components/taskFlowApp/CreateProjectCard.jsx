@@ -102,6 +102,7 @@ export function CreateProjectCard() {
             <Input
               label={translations.projectTitle}
               name="name"
+              required
               onChange={Formik.handleChange}
               value={Formik.values.name}
             />

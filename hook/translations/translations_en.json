@@ -41,6 +41,16 @@
   "password": "Password",
   "your_email": "Your Email",
   "sign_in": "Sign In",
+  "sign_out": "Sign Out",
   "dont_have_an_account_yet": "Don't have an account yet?",
-  "sign_up": "Sign Up"
+  "already_have_account": "Already have an account?",
+  "sign_up": "Sign Up",
+  "create_password": "Create a password",
+  "loading": "Loading...",
+  "welcome_to_flexflow": "Welcome to FlexFlow",
+  "showcase_intro": "Manage your tasks in the simplest and most practical way.",
+  "get_started": "Get started",
+  "day": "day",
+  "days": "days",
+  "left": "left"
 }

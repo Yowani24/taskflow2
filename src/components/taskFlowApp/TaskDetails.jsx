@@ -198,9 +198,12 @@ export function TaskDetails({ taskData, taskName, status, taskId }) {
                             status === "initialized" || status === "done"
                               ? "#4b41dfce"
                               : "",
+                          cursor: estado == 100 ? "not-allowed" : "pointer",
                         }}
                         onClick={() =>
-                          handleToggleActivityStatus("initialized")
+                          estado == 100
+                            ? () => {}
+                            : handleToggleActivityStatus("initialized")
                         }
                       >
                         <TbPlayerPlayFilled size={18} />

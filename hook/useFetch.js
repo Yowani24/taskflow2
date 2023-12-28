@@ -1,5 +1,4 @@
 import axios from "axios";
-import { useState } from "react";
 import { useMutation, useQuery } from "react-query";
 
 // const api_url = "http://localhost:3000";

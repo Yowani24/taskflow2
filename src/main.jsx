@@ -15,6 +15,9 @@ import Protected from "./Protected.jsx";
 import Register from "./pages/Register.jsx";
 import Login from "./pages/Login.jsx";
 import PageNotFound from "./pages/PageNotFound.jsx";
+import TranscriptionForm from "./pages/TranscriptionForm.jsx";
+import ShowCase from "./pages/ShowCase.jsx";
+import TaskFlow from "./pages/TaskFlow.jsx";
 
 const queryClient = new QueryClient();
 
@@ -25,6 +28,15 @@ const router = createBrowserRouter(
       <Route path="register" element={<Register />} />
       <Route path="/" element={<Protected />}>
         <Route path="/" index element={<Home />} />
+      </Route>
+      <Route path="/" element={<Protected />}>
+        <Route path="home" element={<ShowCase />} />
+      </Route>
+      <Route path="/" element={<Protected />}>
+        <Route path="taskflow" element={<TaskFlow />} />
+      </Route>
+      <Route path="/" element={<Protected />}>
+        <Route path="transcriptionForm" element={<TranscriptionForm />} />
       </Route>
       <Route path="*" element={<PageNotFound />} />
     </Route>

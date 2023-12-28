@@ -8,7 +8,19 @@ import { HiOutlineStatusOnline } from "react-icons/hi";
 import { HiOutlineStatusOffline } from "react-icons/hi";
 
 export default function TaskCard(props) {
-  const { translations } = useLang();
+  const { language, translations } = useLang();
+
+  const calculateMissingTime = () => {
+    const startDate = new Date(props.start);
+    const endDate = new Date(props.end);
+
+    const timeDiff = endDate - startDate;
+    const daysDiff = timeDiff / (1000 * 60 * 60 * 24);
+
+    return { daysDiff };
+  };
+
+  const { daysDiff } = calculateMissingTime();
   return (
     <div
       className="custom-box-shadow w-full transition flex items-start justify-between flex-col my-2 md:m-[10px] md:max-w-[380px] md:h-[210px] h-[232px] py-2 px-3 rounded-2xl bg-[#f7f9fd]"
@@ -34,24 +46,63 @@ export default function TaskCard(props) {
       </div>
 
       <div className="flex flex-col w-full">
-        <div className="flex flax-row items-center gap-6 mt-5">
-          <div
-            className="flex flex-row justify-between items-center text-gray-800 gap-2 text-[12px] bg-white rounded-full px-2"
-            style={{ border: "1px solid #dde6f3e3" }}
-          >
-            <TbCalendarTime color="gray" />{" "}
-            {new Date(props.start).toLocaleDateString("en-US", {
-              timeZone: "UTC",
-            })}
-          </div>
-          <div
-            className="flex flex-row justify-between items-center text-gray-800 gap-2 text-[12px] bg-white rounded-full px-2"
-            style={{ border: "1px solid #dde6f3e3" }}
-          >
-            <RiCalendarCheckLine color="gray" />{" "}
-            {new Date(props.end).toLocaleDateString("en-US", {
-              timeZone: "UTC",
-            })}
+        <div>
+          <div className="flex flax-row items-center gap-6 mt-5">
+            <div
+              className="flex flex-row justify-between items-center text-gray-800 gap-2 text-[12px] bg-white rounded-full px-2"
+              style={{ border: "1px solid #dde6f3e3" }}
+            >
+              <TbCalendarTime color="gray" />{" "}
+              {new Date(props.start).toLocaleDateString("en-US", {
+                timeZone: "UTC",
+              })}
+            </div>
+            <div
+              className="flex flex-row justify-between items-center text-gray-800 gap-2 text-[12px] bg-white rounded-full px-2"
+              style={{ border: "1px solid #dde6f3e3" }}
+            >
+              <RiCalendarCheckLine color="gray" />{" "}
+              {new Date(props.end).toLocaleDateString("en-US", {
+                timeZone: "UTC",
+              })}
+            </div>
+            {language === "en" ? (
+              <div
+                className="flex"
+                style={{
+                  color: daysDiff <= 3 ? "orange" : "#847bff",
+                  fontSize: 13,
+                }}
+              >
+                {daysDiff > 0 && (
+                  <>
+                    {daysDiff}{" "}
+                    {daysDiff === 1 ? translations.day : translations.days}{" "}
+                    <span className="hidden md:flex ml-1">
+                      {translations.left}{" "}
+                    </span>
+                  </>
+                )}
+              </div>
+            ) : (
+              <div
+                className="flex"
+                style={{
+                  color: daysDiff <= 3 ? "orange" : "#847bff",
+                  fontSize: 13,
+                }}
+              >
+                <span className="hidden md:flex mr-1">
+                  {daysDiff === 1 ? translations.resta : translations.left}{" "}
+                </span>{" "}
+                {daysDiff > 0 && (
+                  <>
+                    {daysDiff}{" "}
+                    {daysDiff === 1 ? translations.day : translations.days}
+                  </>
+                )}
+              </div>
+            )}
           </div>
         </div>
 
