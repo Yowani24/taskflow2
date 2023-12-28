@@ -42,7 +42,7 @@ export default function ShowCase() {
     navigate("/login");
   };
   return (
-    <div className="w-full h-screen flex flex-col" style={divStyle}>
+    <div className="w-full h-screen flex flex-col bg-white">
       <div className="flex justify-between p-5 md:px-20 md:pt-10">
         {/* <Typography className="text-2xl font-medium">FlexFlow</Typography> */}
         <img
