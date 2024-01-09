@@ -18,6 +18,7 @@ import PageNotFound from "./pages/PageNotFound.jsx";
 import TranscriptionForm from "./pages/TranscriptionForm.jsx";
 import ShowCase from "./pages/ShowCase.jsx";
 import TaskFlow from "./pages/TaskFlow.jsx";
+import Testes from "./pages/Testes.jsx";
 
 const queryClient = new QueryClient();
 
@@ -38,6 +39,7 @@ const router = createBrowserRouter(
       <Route path="/" element={<Protected />}>
         <Route path="transcriptionForm" element={<TranscriptionForm />} />
       </Route>
+      <Route path="testes" element={<Testes />} />
       <Route path="*" element={<PageNotFound />} />
     </Route>
   )
