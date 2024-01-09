@@ -141,11 +141,11 @@ export default function ShowCase() {
           </Button>
         </Link>
       </div>
-      <p className="pb-10 ml-20">
-        Você pode usar essa plataforma para{" "}
+      <p className="pb-10 ml-20 text-gray-800">
+        {translations.you_can_use_this_platform_to}{" "}
         <Link to="/transcriptionForm">
           <span className="text-[#4b41dff3] font-bold cursor-pointer">
-            Transcrever áudios
+            {translations.transcribe_audio}
           </span>
         </Link>
       </p>

@@ -16,6 +16,8 @@
   "noSubActivitiesText": "No sub activities registered",
   "subActivitiesText": "Sub activities",
   "activityDetails": "Activity details",
+  "you_can_use_this_platform_to": "You can use this platform to",
+  "transcribe_audio": "Transcribe audio",
   "createProject": "Create project",
   "createActivity": "Add activity",
   "deleteProject": "Delete project",
