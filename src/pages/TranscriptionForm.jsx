@@ -108,11 +108,9 @@ const TranscriptionForm = () => {
 
   const maxHeight = 600;
 
-  const overflowScroll = maxHeight >= 600;
-  const dynamicClassName = `relative bg-gray-900 text-gray-500 p-5 w-[80%] mt-10 md:mt-20 rounded-2xl max-h-[60%] md:max-h-[${maxHeight}px] ${
-    overflowScroll
-      ? "md:overflow-y-scroll md:overflow-x-hidden"
-      : "md:overflow-none"
+  const overflowScroll = maxHeight > 600;
+  const dynamicClassName = `relative bg-gray-900 text-gray-500 p-5 w-[80%] mt-10 md:mt-20 rounded-2xl max-h-[60%] max-h-[${maxHeight}px] ${
+    overflowScroll ? "overflow-y-scroll overflow-x-hidden" : "overflow-none"
   }`;
 
   return (

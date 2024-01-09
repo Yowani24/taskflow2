@@ -25,6 +25,7 @@ app.post("/upload", upload.single("audio"), async (req, res) => {
     const params = {
       audio: audioBuffer,
       speaker_labels: true,
+      language_code: "pt",
     };
 
     const transcript = await client.transcripts.transcribe(params);

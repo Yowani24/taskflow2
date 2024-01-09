@@ -142,7 +142,7 @@ export default function ShowCase() {
         </Link>
       </div>
       <p className="pb-10 ml-20">
-        Você pode usar essa platafrma para{" "}
+        Você pode usar essa plataforma para{" "}
         <Link to="/transcriptionForm">
           <span className="text-[#4b41dff3] font-bold cursor-pointer">
             Transcrever áudios
