@@ -115,3 +115,7 @@ input {
     rgba(29, 4, 68, 1) 100%
   );
 }
+
+.textDisplayGround::-webkit-scrollbar {
+  display: none;
+}

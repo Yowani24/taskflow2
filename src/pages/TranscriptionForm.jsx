@@ -109,9 +109,10 @@ const TranscriptionForm = () => {
   const maxHeight = 600;
 
   const overflowScroll = maxHeight > 600;
-  const dynamicClassName = `relative bg-gray-900 text-gray-500 p-5 w-[80%] mt-10 md:mt-20 rounded-2xl max-h-[60%] max-h-[${maxHeight}px] ${
-    overflowScroll ? "overflow-y-scroll overflow-x-hidden" : "overflow-none"
-  }`;
+  // const dynamicClassName = `relative bg-gray-900 text-gray-500 p-5 w-[80%] mt-10 md:mt-20 rounded-2xl max-h-[60%] max-h-[${maxHeight}px] ${
+  //   overflowScroll ? "overflow-y-scroll overflow-x-hidden" : "overflow-none"
+  // }`;
+  const dynamicClassName = `relative textDisplayGround border-8 border-gray-700 bg-gray-900 text-gray-500 p-5 w-[80%] mt-5 rounded-2xl max-h-[60%] max-h-[${maxHeight}px] overflow-auto scrollbar-hide`;
 
   return (
     <div className="transcriptionBkgd w-full h-screen flex flex-col items-center justify-start">
@@ -171,16 +172,18 @@ const TranscriptionForm = () => {
           <span className="text-white mt-2">Aguarde um momento</span>
         </div>
       ) : (
-        <p className={dynamicClassName} ref={textRef}>
-          {transcriptionData}
+        <div className="relative w-full flex flex-col mt-[2%] items-center justify-center">
           <span
             onClick={handleCopyText}
-            className="absolute top-4 md:top-[-50px] right-4 flex items-center gap-2 bg-white md:bg-gray-800 rounded-full px-2 py-1 cursor-pointer active:bg-gray-900 transition text-black md:text-green-300"
+            className="top-4 md:top-[-10px] self-end mr-[10%] flex items-center gap-2 bg-white md:bg-gray-800 rounded-full px-2 py-1 cursor-pointer active:bg-gray-900 transition text-black md:text-green-300"
           >
             Copiar texto
             <IoCopy size={16} />
           </span>
-        </p>
+          <p className={dynamicClassName} ref={textRef}>
+            {transcriptionData}
+          </p>
+        </div>
       )}
     </div>
   );
