@@ -46,10 +46,10 @@ export default function ShowCase() {
       <div className="flex justify-between p-5 md:px-20 md:pt-10">
         {/* <Typography className="text-2xl font-medium">FlexFlow</Typography> */}
         <img
-          className="object-cover object-center"
+          className="object-cover object-center w-[150px] md:w-[200px]"
           src={logo}
           alt="nature image"
-          width={200}
+          // width={200}
         />
         <div className="flex items-center gap-4">
           <Menu>
@@ -119,36 +119,38 @@ export default function ShowCase() {
           </Menu>
         </div>
       </div>
-      <div className="flex items-center justify-center">
-        <Typography
-          variant="h4"
-          color="blue-gray"
-          className="text-2xl md:text-4xl"
-        >
-          {translations.hello} {user && user.email.split("@")[0]} 👋
-        </Typography>
-      </div>
-      <div className="text-center flex items-center flex-col justify-center h-screen">
-        <h1 className="text-[30px] md:text-[60px] font-medium mt-[-150px] mb-10 md:mb-20 text-[#4b41dff3]">
+      <div className="flex flex-col items-center justify-center mt-[5%] md:mt-[2%]">
+        <div className="flex items-center justify-center mb-5">
+          <Typography
+            variant="h4"
+            color="blue-gray"
+            className="text-2xl md:text-4xl"
+          >
+            {translations.hello} {user && user.email.split("@")[0]} 👋
+          </Typography>
+        </div>
+        <h1 className="text-[30px] md:text-[60px] font-medium mt-[0px] mb-10 md:mb-20 text-[#4b41dff3]">
           {translations.welcome_to_flexflow}
         </h1>
-        <h1 className="text-[25px] text-gray-900 md:text-[60px] font-medium w-[80%] md:w-[60%]">
-          {translations.showcase_intro}
-        </h1>
-        <Link to="/taskflow">
-          <Button className="mt-10 md:mt-20 rounded-full">
-            {translations.get_started}
-          </Button>
-        </Link>
+        <div className="text-center flex items-center flex-col justify-center">
+          <h1 className="text-[25px] text-gray-900 md:text-[60px] font-medium w-[80%] md:w-[60%]">
+            {translations.showcase_intro}
+          </h1>
+          <Link to="/taskflow">
+            <Button className="mt-10 md:mt-20 rounded-full">
+              {translations.get_started}
+            </Button>
+          </Link>
+        </div>
+        <p className="pb-10 px-10 text-gray-800 mt-[20%] md:mt-[8%] text-center">
+          {translations.you_can_use_this_platform_to}{" "}
+          <Link to="/transcriptionForm">
+            <span className="text-[#4b41dff3] font-bold cursor-pointer">
+              {translations.transcribe_audio}
+            </span>
+          </Link>
+        </p>
       </div>
-      <p className="pb-10 ml-20 text-gray-800">
-        {translations.you_can_use_this_platform_to}{" "}
-        <Link to="/transcriptionForm">
-          <span className="text-[#4b41dff3] font-bold cursor-pointer">
-            {translations.transcribe_audio}
-          </span>
-        </Link>
-      </p>
     </div>
   );
 }
