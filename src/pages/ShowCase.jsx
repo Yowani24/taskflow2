@@ -120,7 +120,7 @@ export default function ShowCase() {
         </div>
       </div>
       <div className="flex flex-col items-center justify-center mt-[5%] md:mt-[2%]">
-        <div className="flex items-center justify-center mb-5">
+        <div className="flex items-center justify-center mb-10">
           <Typography
             variant="h4"
             color="blue-gray"
@@ -133,7 +133,7 @@ export default function ShowCase() {
           {translations.welcome_to_flexflow}
         </h1>
         <div className="text-center flex items-center flex-col justify-center">
-          <h1 className="text-[25px] text-gray-900 md:text-[60px] font-medium w-[80%] md:w-[60%]">
+          <h1 className="text-[30px] text-gray-900 md:text-[60px] font-medium w-[90%] md:w-[60%]">
             {translations.showcase_intro}
           </h1>
           <Link to="/taskflow">
