@@ -129,11 +129,11 @@ export default function ShowCase() {
             {translations.hello} {user && user.email.split("@")[0]} 👋
           </Typography>
         </div>
-        <h1 className="text-[30px] md:text-[60px] font-medium mt-[0px] mb-10 md:mb-20 text-[#4b41dff3]">
+        <h1 className="text-[30px] md:text-[60px] font-medium mt-[0px] mb-10 md:mb-15 text-[#4b41dff3]">
           {translations.welcome_to_flexflow}
         </h1>
         <div className="text-center flex items-center flex-col justify-center">
-          <h1 className="text-[30px] text-gray-900 md:text-[60px] font-medium w-[90%] md:w-[60%]">
+          <h1 className="introFontFamily text-[30px] text-gray-900 md:text-[80px] font-semibold w-[90%] md:w-[60%]">
             {translations.showcase_intro}
           </h1>
           <Link to="/taskflow">
@@ -142,7 +142,7 @@ export default function ShowCase() {
             </Button>
           </Link>
         </div>
-        <p className="pb-10 px-10 text-gray-800 mt-[20%] md:mt-[8%] text-center">
+        <p className="pb-10 px-10 text-gray-800 mt-[20%] md:mt-[6%] text-center">
           {translations.you_can_use_this_platform_to}{" "}
           <Link to="/transcriptionForm">
             <span className="text-[#4b41dff3] font-bold cursor-pointer">

@@ -119,3 +119,6 @@ input {
 .textDisplayGround::-webkit-scrollbar {
   display: none;
 }
+.introFontFamily {
+  font-family: "Playfair Display", serif;
+}
