@@ -1,15 +1,17 @@
 import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
-import { Button } from "@material-tailwind/react";
+import { Button, IconButton } from "@material-tailwind/react";
 import { IoCopy } from "react-icons/io5";
 import { GiSoundWaves } from "react-icons/gi";
 import { Rings } from "react-loader-spinner";
+import logo from "../assets/flexflowlogo2.png";
+import { Link } from "react-router-dom";
+import { HiHome } from "react-icons/hi2";
 
 const TranscriptionForm = () => {
   const [file, setFile] = useState(null);
   const [loading, setLoading] = useState(false);
   const [loadingAudio, setLoadingAudio] = useState(false);
-  // const [progress, setProgress] = useState(0);
 
   const [fileName, setFileName] = useState("");
   const fileInputRef = useRef(null);
@@ -91,32 +93,23 @@ const TranscriptionForm = () => {
     }
   };
 
-  // useEffect(() => {
-  //   const interval = setInterval(() => {
-  //     setProgress((prevProgress) =>
-  //       prevProgress === 100 ? 0 : prevProgress + 1
-  //     );
-  //   }, 100);
-
-  //   setTimeout(() => {
-  //     clearInterval(interval);
-  //     setLoading(false);
-  //   }, 5000);
-
-  //   return () => clearInterval(interval);
-  // }, [loading, transcriptionData]);
-
-  const maxHeight = 600;
-
-  const overflowScroll = maxHeight > 600;
-  // const dynamicClassName = `relative bg-gray-900 text-gray-500 p-5 w-[80%] mt-10 md:mt-20 rounded-2xl max-h-[60%] max-h-[${maxHeight}px] ${
-  //   overflowScroll ? "overflow-y-scroll overflow-x-hidden" : "overflow-none"
-  // }`;
-  const dynamicClassName = `relative textDisplayGround border-8 border-gray-700 bg-gray-900 text-gray-500 p-5 w-[80%] mt-5 rounded-2xl max-h-[60%] max-h-[${maxHeight}px] overflow-auto scrollbar-hide`;
+  const dynamicClassName = `relative textDisplayGround border-8 border-gray-700 bg-gray-900 text-gray-500 p-5 w-[80%] mt-5 rounded-2xl max-h-[60%] max-h-[600px] overflow-auto scrollbar-hide`;
 
   return (
     <div className="transcriptionBkgd w-full h-screen flex flex-col items-center justify-start">
-      <div className="flex flex-col md:flex-row items-center md:items-start justify-center mt-[8%] gap-10">
+      <div className="w-full flex items-center justify-between p-5 md:px-20 md:pt-10">
+        <img
+          className="object-cover object-center w-[150px] md:w-[200px] bg-purple-50 p-2 rounded-md"
+          src={logo}
+          alt="nature image"
+        />
+        <Link to="/home">
+          <IconButton size="sm">
+            <HiHome size={18} color="#fff" />
+          </IconButton>
+        </Link>
+      </div>
+      <div className="flex flex-col md:flex-row items-center md:items-start justify-center gap-10">
         <input
           ref={fileInputRef}
           type="file"

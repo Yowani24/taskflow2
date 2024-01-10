@@ -72,9 +72,6 @@ button:focus-visible {
   }
 }
 
-.cardHover:hover {
-}
-
 .custom-box-shadow {
   box-shadow: rgba(15, 8, 8, 0.1) -4px 9px 25px -6px;
 }

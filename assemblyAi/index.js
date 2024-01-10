@@ -1,12 +1,14 @@
+import dotenv from "dotenv";
 import express from "express";
 import multer from "multer";
 import bodyParser from "body-parser";
 import { AssemblyAI } from "assemblyai";
 import cors from "cors";
+dotenv.config();
 
 const app = express();
 const port = 3001;
-const apiKey = "b2937b1ae7604a4b8ea5fe1fd0fab52f";
+const apiKey = process.env.ASSEMBLYAI_API_KEY;
 
 const client = new AssemblyAI({ apiKey });
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
