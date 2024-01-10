@@ -165,18 +165,24 @@ const TranscriptionForm = () => {
           <span className="text-white mt-2">Aguarde um momento</span>
         </div>
       ) : (
-        <div className="relative w-full flex flex-col mt-[2%] items-center justify-center">
-          <span
-            onClick={handleCopyText}
-            className="top-4 md:top-[-10px] self-end mr-[10%] flex items-center gap-2 bg-white md:bg-gray-800 rounded-full px-2 py-1 cursor-pointer active:bg-gray-900 transition text-black md:text-green-300"
-          >
-            Copiar texto
-            <IoCopy size={16} />
-          </span>
-          <p className={dynamicClassName} ref={textRef}>
-            {transcriptionData}
-          </p>
-        </div>
+        <>
+          {transcriptionData && transcriptionData.length === 0 ? (
+            ""
+          ) : (
+            <div className="relative w-full flex flex-col mt-[2%] items-center justify-center">
+              <span
+                onClick={handleCopyText}
+                className="top-4 md:top-[-10px] self-end mr-[10%] flex items-center gap-2 bg-white md:bg-gray-800 rounded-full px-2 py-1 cursor-pointer active:bg-gray-900 transition text-black md:text-green-300"
+              >
+                Copiar texto
+                <IoCopy size={16} />
+              </span>
+              <p className={dynamicClassName} ref={textRef}>
+                {transcriptionData}
+              </p>
+            </div>
+          )}
+        </>
       )}
     </div>
   );
