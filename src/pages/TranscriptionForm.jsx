@@ -66,7 +66,8 @@ const TranscriptionForm = () => {
       formData.append("audio", file);
 
       const response = await axios.post(
-        "http://localhost:3001/upload",
+        // "http://localhost:3001/upload",
+        "https://fragile-ant-dirndl.cyclic.app",
         formData,
         {
           headers: {
