@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useMutation, useQuery } from "react-query";
 
-// const api_url = "http://localhost:3000";
+// const api_url = "https://salt.db.elephantsql.com";
 
 const api_url = "https://taskflowapi2.onrender.com";
 

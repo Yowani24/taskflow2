@@ -39,7 +39,6 @@ const router = createBrowserRouter(
       <Route path="/" element={<Protected />}>
         <Route path="transcriptionForm" element={<TranscriptionForm />} />
       </Route>
-      {/* <Route path="testes" element={<Testes />} /> */}
       <Route path="*" element={<PageNotFound />} />
     </Route>
   )
